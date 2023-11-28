@@ -1,5 +1,5 @@
-import Navbar from "@/components/dashboard/navbar/Navbar";
-import Sidebar from "@/components/dashboard/sidebar/Sidebar";
+import Navbar from "@/components/dashboard/navbar/navbar";
+import Sidebar from "@/components/dashboard/sidebar/sidebar";
 import { ReactNode } from "react";
 
 type DashboardLayoutProps = {
