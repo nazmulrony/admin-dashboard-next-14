@@ -11,6 +11,7 @@ const config: Config = {
             colors: {
                 bgColor: "#151c2c",
                 bgSoft: "#182237",
+                bgSofter: "#2e374a",
                 textSoft: "#b7bac1",
             },
             backgroundImage: {
