@@ -12,7 +12,7 @@ import {
 export default function Navbar() {
     const pathname = usePathname();
     return (
-        <div className="bg-bgSoft rounded-lg  p-10  flex justify-between items-center  ">
+        <div className="bg-bgSoft rounded-lg p-5 flex justify-between items-center  ">
             <div className="font-bold text-textSoft capitalize">
                 {pathname.split("/").pop()}
             </div>
