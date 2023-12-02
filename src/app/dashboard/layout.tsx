@@ -1,3 +1,4 @@
+import Footer from "@/components/dashboard/footer";
 import Navbar from "@/components/dashboard/navbar/navbar";
 import Sidebar from "@/components/dashboard/sidebar/sidebar";
 import { ReactNode } from "react";
@@ -14,6 +15,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="flex-[4] p-5">
                 <Navbar />
                 {children}
+                <Footer />
             </div>
         </div>
     );
