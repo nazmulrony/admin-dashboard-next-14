@@ -45,7 +45,7 @@ export default function UsersPage() {
                         <td className="p-2">active</td>
                         <td className="p-2">
                             <div className="flex gap-2">
-                                <Link href="/">
+                                <Link href="/dashboard/users/test">
                                     <button className="py-1 rounded px-2 text-white cursor-pointer bg-teal-600">
                                         View
                                     </button>
