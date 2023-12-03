@@ -6,12 +6,12 @@ type SearchProps = {
 
 export default function Search({ placeholder }: SearchProps) {
     return (
-        <div className="flex items-center gap-2 bg-[#2e374a] p-2 rounded-lg w-max">
+        <div className="flex items-center gap-2 bg-bgSofter p-2 rounded-lg w-max">
             <MdSearch />
             <input
                 type="text"
                 placeholder={placeholder}
-                className=" bg-transparent border-none text-textSoft outline-none"
+                className=" bg-transparent border-none text-white outline-none"
             />
         </div>
     );
