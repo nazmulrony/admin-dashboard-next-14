@@ -1,3 +1,4 @@
+import Pagination from "@/components/dashboard/pagination/pagination";
 import Search from "@/components/dashboard/search/search";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,6 +60,7 @@ export default function UsersPage() {
                     </tr>
                 </tbody>
             </table>
+            <Pagination />
         </div>
     );
 }

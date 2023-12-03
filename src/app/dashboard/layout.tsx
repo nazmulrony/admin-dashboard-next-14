@@ -9,7 +9,7 @@ type DashboardLayoutProps = {
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
     return (
         <div className="flex">
-            <div className="flex-1 bg-bgSoft p-5">
+            <div className="flex-1 bg-bgSoft p-5 min-h-screen">
                 <Sidebar />
             </div>
             <div className="flex-[4] p-5">
