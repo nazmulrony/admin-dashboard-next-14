@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function SingleUserPage() {
+export default function SingleProductPage() {
     return (
         <div className="flex gap-12 mt-5">
             <div className="flex-1 bg-bgSoft p-5 rounded-lg font-bold text-textSoft h-max">
@@ -16,57 +16,56 @@ export default function SingleUserPage() {
             </div>
             <div className="flex-[3] bg-bgSoft p-5 rounded-lg">
                 <form className="flex flex-col">
-                    <label> Username</label>
+                    <label> Title</label>
                     <input
                         className="p-5 border-2 border-gray-600 rounded bg-bgColor my-[10px]"
                         type="text"
-                        name="username"
+                        name="title"
                         placeholder="Nazmul Rony"
                     />
-                    <label> Email</label>
+                    <label> Price</label>
                     <input
                         className="p-5 border-2 border-gray-600 rounded bg-bgColor my-[10px]"
-                        type="email"
-                        name="email"
+                        type="number"
+                        name="price"
                         placeholder="rony@gmail.com"
                     />
-                    <label> Password</label>
+                    <label> Stock</label>
                     <input
                         className="p-5 border-2 border-gray-600 rounded bg-bgColor my-[10px]"
-                        type="password"
-                        name="password"
+                        type="number"
+                        name="stock"
                     />
-                    <label> Phone</label>
+                    <label> Color</label>
                     <input
                         className="p-5 border-2 border-gray-600 rounded bg-bgColor my-[10px]"
                         type="text"
-                        name="phone"
+                        name="color"
                         placeholder="Nazmul Rony"
                     />
 
-                    <label> Address</label>
+                    <label> Size</label>
+                    <input
+                        className="p-5 border-2 border-gray-600 rounded bg-bgColor my-[10px]"
+                        name="size"
+                    />
+                    <label> Cat</label>
+                    <select
+                        className="p-5 border-2 border-gray-600 rounded bg-bgColor my-[10px]"
+                        name="cat"
+                        id="cat"
+                    >
+                        <option value="kitchen">Kitchen</option>
+                        <option value="computers">Computers</option>
+                    </select>
+                    <label> Description</label>
                     <textarea
+                        name="desc"
+                        id="desc"
+                        rows={10}
+                        placeholder="description"
                         className="p-5 border-2 border-gray-600 rounded bg-bgColor my-[10px]"
-                        name="address"
                     ></textarea>
-                    <label> IsAdmin</label>
-                    <select
-                        className="p-5 border-2 border-gray-600 rounded bg-bgColor my-[10px]"
-                        name="isAdmin"
-                        id="isAdmin"
-                    >
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
-                    <label> IsActive</label>
-                    <select
-                        className="p-5 border-2 border-gray-600 rounded bg-bgColor my-[10px]"
-                        name="isActive"
-                        id="isActive"
-                    >
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
                     <button className="px-7 w-full py-3 bg-teal-600 rounded mt-5">
                         Update
                     </button>
