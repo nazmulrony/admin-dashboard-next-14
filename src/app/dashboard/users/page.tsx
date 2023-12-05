@@ -1,9 +1,12 @@
 import Pagination from "@/components/dashboard/pagination/pagination";
 import Search from "@/components/dashboard/search/search";
+import { fetchUsers } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function UsersPage() {
+export default async function UsersPage() {
+    const users = await fetchUsers();
+    console.log(users);
     return (
         <div className="bg-bgSoft p-5 rounded-lg mt-5">
             <div className="flex items-center justify-between">
@@ -26,38 +29,40 @@ export default function UsersPage() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="p-2">
-                            <div className="flex items-center gap-2">
-                                <Image
-                                    src="/avatar.jpg"
-                                    alt=""
-                                    width={40}
-                                    height={40}
-                                    className="rounded-full object-cover"
-                                />
-                                Nazmul Rony
-                            </div>
-                        </td>
-                        <td className="p-2">nazmulrony@gmail.com</td>
-                        <td className="p-2">03.12.2023</td>
-                        <td className="p-2">Admin</td>
-                        <td className="p-2">active</td>
-                        <td className="p-2">
-                            <div className="flex gap-2">
-                                <Link href="/dashboard/users/test">
-                                    <button className="py-1 rounded px-2 text-white cursor-pointer bg-teal-600">
-                                        View
-                                    </button>
-                                </Link>
-                                <Link href="/">
-                                    <button className="py-1 rounded px-2 text-white cursor-pointer bg-red-500">
-                                        Delete
-                                    </button>
-                                </Link>
-                            </div>
-                        </td>
-                    </tr>
+                    {users.map((user) => (
+                        <tr key={user?._id}>
+                            <td className="p-2">
+                                <div className="flex items-center gap-2">
+                                    <Image
+                                        src={user?.img || "/avatar.jpg"}
+                                        alt=""
+                                        width={40}
+                                        height={40}
+                                        className="rounded-full object-cover"
+                                    />
+                                    {user?.username}
+                                </div>
+                            </td>
+                            <td className="p-2">{user?.email}</td>
+                            <td className="p-2">{user?.createdAt}</td>
+                            <td className="p-2">Admin</td>
+                            <td className="p-2">active</td>
+                            <td className="p-2">
+                                <div className="flex gap-2">
+                                    <Link href="/dashboard/users/test">
+                                        <button className="py-1 rounded px-2 text-white cursor-pointer bg-teal-600">
+                                            View
+                                        </button>
+                                    </Link>
+                                    <Link href="/">
+                                        <button className="py-1 rounded px-2 text-white cursor-pointer bg-red-500">
+                                            Delete
+                                        </button>
+                                    </Link>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
             <Pagination />
