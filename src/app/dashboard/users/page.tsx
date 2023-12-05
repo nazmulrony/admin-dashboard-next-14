@@ -44,12 +44,20 @@ export default async function UsersPage() {
                                 </div>
                             </td>
                             <td className="p-2">{user?.email}</td>
-                            <td className="p-2">{user?.createdAt}</td>
-                            <td className="p-2">Admin</td>
-                            <td className="p-2">active</td>
+                            <td className="p-2">
+                                {user?.createdAt?.toString().slice(4, 16)}
+                            </td>
+                            <td className="p-2">
+                                {user?.isActive ? "Admin" : "Client"}
+                            </td>
+                            <td className="p-2">
+                                {user?.isActive ? "active" : "inactive"}
+                            </td>
                             <td className="p-2">
                                 <div className="flex gap-2">
-                                    <Link href="/dashboard/users/test">
+                                    <Link
+                                        href={`/dashboard/users/${user?._id}`}
+                                    >
                                         <button className="py-1 rounded px-2 text-white cursor-pointer bg-teal-600">
                                             View
                                         </button>
