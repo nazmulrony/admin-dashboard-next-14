@@ -1,19 +1,55 @@
 import User from "@/models/user-model";
 import { connectToDB } from "./utils";
+import Product from "@/models/product-model";
 
-export const fetchUsers = async (q: string) => {
+export const fetchUsers = async (q: string, page: string) => {
     const regex = new RegExp(q, "i");
+    const ITEMS_PER_PAGE = 2;
     try {
         connectToDB();
+        //sends the total number of users on the query result
+        const count = await User.find({
+            $or: [
+                { username: { $regex: regex } },
+                { email: { $regex: regex } },
+            ],
+        }).countDocuments();
+
         //this query finds the user whose username or email matches the regular expression
         const users = await User.find({
             $or: [
                 { username: { $regex: regex } },
                 { email: { $regex: regex } },
             ],
-        });
-        return users;
+        })
+            .limit(ITEMS_PER_PAGE)
+            .skip(ITEMS_PER_PAGE * (Number(page) - 1));
+
+        return { count, users };
     } catch (error) {
         throw new Error("Failed to fetch users");
+    }
+};
+
+export const fetchProducts = async (q: string, page: string) => {
+    const regex = new RegExp(q, "i");
+    const ITEMS_PER_PAGE = 2;
+    try {
+        connectToDB();
+        //sends the total number of products on the query result
+        const count = await Product.find({
+            title: { $regex: regex },
+        }).countDocuments();
+
+        //this query finds the product whose title  matches the regular expression
+        const products = await Product.find({
+            title: { $regex: regex },
+        })
+            .limit(ITEMS_PER_PAGE)
+            .skip(ITEMS_PER_PAGE * (Number(page) - 1));
+
+        return { count, products };
+    } catch (error) {
+        throw new Error("Failed to fetch products");
     }
 };

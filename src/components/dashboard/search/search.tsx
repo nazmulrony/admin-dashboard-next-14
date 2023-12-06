@@ -16,6 +16,8 @@ export default function Search({ placeholder }: SearchProps) {
     const handleSearch = useDebouncedCallback(
         (e: ChangeEvent<HTMLInputElement>) => {
             const params = new URLSearchParams(searchParams);
+            //when start typing it's reset to page 1
+            params.set("page", "1");
 
             if (e.target.value) {
                 e.target.value.length > 2 && params.set("q", e.target.value);

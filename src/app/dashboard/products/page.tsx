@@ -1,9 +1,24 @@
 import Pagination from "@/components/dashboard/pagination/pagination";
 import Search from "@/components/dashboard/search/search";
+import { fetchProducts } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ProductsPage() {
+type SearchParamsProps = {
+    [key: string]: string;
+};
+
+export default async function ProductsPage({
+    searchParams,
+}: {
+    searchParams: SearchParamsProps;
+}) {
+    const q = searchParams?.q;
+    const page = searchParams?.page || "1";
+
+    const { count, products } = await fetchProducts(q, page);
+
+    console.log(products);
     return (
         <div className="bg-bgSoft p-5 rounded-lg mt-5">
             <div className="flex items-center justify-between">
@@ -26,41 +41,47 @@ export default function ProductsPage() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="p-2">
-                            <div className="flex items-center gap-2">
-                                <Image
-                                    src="/noproduct.jpg"
-                                    alt=""
-                                    width={40}
-                                    height={40}
-                                    className="rounded-full object-cover"
-                                />
-                                Iphone
-                            </div>
-                        </td>
-                        <td className="p-2">Lorem ipsum dolor sit amet.</td>
-                        <td className="p-2">$123</td>
-                        <td className="p-2">December 3, 2023</td>
-                        <td className="p-2">34</td>
-                        <td className="p-2">
-                            <div className="flex gap-2">
-                                <Link href="/">
-                                    <button className="py-1 rounded px-2 text-white cursor-pointer bg-teal-600">
-                                        View
-                                    </button>
-                                </Link>
-                                <Link href="/">
-                                    <button className="py-1 rounded px-2 text-white cursor-pointer bg-red-500">
-                                        Delete
-                                    </button>
-                                </Link>
-                            </div>
-                        </td>
-                    </tr>
+                    {products.map((product) => (
+                        <tr key={product?.title}>
+                            <td className="p-2">
+                                <div className="flex items-center gap-2">
+                                    <Image
+                                        src={product?.img || "/noproduct.jpg"}
+                                        alt=""
+                                        width={40}
+                                        height={40}
+                                        className="rounded-full object-cover"
+                                    />
+                                    {product?.title}
+                                </div>
+                            </td>
+                            <td className="p-2">{product?.desc}</td>
+                            <td className="p-2">${product?.price}</td>
+                            <td className="p-2">
+                                {product?.createdAt?.toString().slice(4, 6)}
+                            </td>
+                            <td className="p-2">34</td>
+                            <td className="p-2">
+                                <div className="flex gap-2">
+                                    <Link
+                                        href={`/dashboard/products/${product?._id}`}
+                                    >
+                                        <button className="py-1 rounded px-2 text-white cursor-pointer bg-teal-600">
+                                            View
+                                        </button>
+                                    </Link>
+                                    <Link href="/">
+                                        <button className="py-1 rounded px-2 text-white cursor-pointer bg-red-500">
+                                            Delete
+                                        </button>
+                                    </Link>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
-            <Pagination />
+            <Pagination count={count} />
         </div>
     );
 }

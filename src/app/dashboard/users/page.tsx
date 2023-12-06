@@ -14,8 +14,9 @@ export default async function UsersPage({
     searchParams: SearchParamsProps;
 }) {
     const q = searchParams?.q;
+    const page = searchParams?.page || "1";
 
-    const users = await fetchUsers(q);
+    const { count, users } = await fetchUsers(q, page);
     // console.log(users);
     return (
         <div className="bg-bgSoft p-5 rounded-lg mt-5">
@@ -83,7 +84,7 @@ export default async function UsersPage({
                     ))}
                 </tbody>
             </table>
-            <Pagination />
+            <Pagination count={count} />
         </div>
     );
 }
