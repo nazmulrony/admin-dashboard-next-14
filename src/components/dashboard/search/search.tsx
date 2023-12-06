@@ -1,3 +1,6 @@
+"use client";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { ChangeEvent } from "react";
 import { MdSearch } from "react-icons/md";
 
 type SearchProps = {
@@ -5,6 +8,16 @@ type SearchProps = {
 };
 
 export default function Search({ placeholder }: SearchProps) {
+    const searchParams = useSearchParams();
+    const { replace } = useRouter();
+    const pathname = usePathname();
+
+    const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+        const params = new URLSearchParams(searchParams);
+        params.set("q", e.target.value);
+        replace(`${pathname}?${params}`);
+    };
+
     return (
         <div className="flex items-center gap-2 bg-bgSofter p-2 rounded-lg w-max">
             <MdSearch />
@@ -12,6 +25,7 @@ export default function Search({ placeholder }: SearchProps) {
                 type="text"
                 placeholder={placeholder}
                 className=" bg-transparent border-none text-white outline-none"
+                onChange={handleSearch}
             />
         </div>
     );
