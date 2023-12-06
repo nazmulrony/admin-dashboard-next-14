@@ -14,7 +14,12 @@ export default function Search({ placeholder }: SearchProps) {
 
     const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
         const params = new URLSearchParams(searchParams);
-        params.set("q", e.target.value);
+
+        if (e.target.value) {
+            params.set("q", e.target.value);
+        } else {
+            params.delete("q");
+        }
         replace(`${pathname}?${params}`);
     };
 

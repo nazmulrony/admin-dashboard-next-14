@@ -4,9 +4,19 @@ import { fetchUsers } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function UsersPage() {
-    const users = await fetchUsers();
-    console.log(users);
+type SearchParamsProps = {
+    [key: string]: string;
+};
+
+export default async function UsersPage({
+    searchParams,
+}: {
+    searchParams: SearchParamsProps;
+}) {
+    const q = searchParams?.q;
+
+    const users = await fetchUsers(q);
+    // console.log(users);
     return (
         <div className="bg-bgSoft p-5 rounded-lg mt-5">
             <div className="flex items-center justify-between">
