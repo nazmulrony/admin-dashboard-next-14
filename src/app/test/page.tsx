@@ -1,7 +1,10 @@
 export default function Test() {
     const handleForm = async (formData: FormData) => {
         "use server";
+        console.log(formData);
+        const username = formData.get("username");
         console.log(Object.entries(formData));
+        console.log(username);
     };
     return (
         <div>
