@@ -55,7 +55,7 @@ export default function AddUserPage() {
                     className="p-7 w-full bg-bgColor text-white border-2 border-gray-600 rounded mb-7"
                     name="address"
                     id="address"
-                    rows={16}
+                    rows={10}
                     placeholder="address"
                 ></textarea>
 

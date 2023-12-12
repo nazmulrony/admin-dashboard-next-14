@@ -52,7 +52,7 @@ export default function AddProductPage() {
                     className="p-7 w-full bg-bgColor text-white border-2 border-gray-600 rounded mb-7"
                     name="desc"
                     id="desc"
-                    rows={16}
+                    rows={10}
                     placeholder="description"
                 ></textarea>
 
