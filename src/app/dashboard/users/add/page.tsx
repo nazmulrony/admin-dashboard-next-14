@@ -1,7 +1,9 @@
+import { addUser } from "@/lib/actions";
+
 export default function AddUserPage() {
     return (
         <div className="bg-bgSoft p-5 rounded-lg mt-5">
-            <form className="flex flex-wrap justify-between">
+            <form className="flex flex-wrap justify-between" action={addUser}>
                 <input
                     className="p-7 bg-bgColor text-white border-2 border-gray-600 rounded mb-7 w-[45%]"
                     type="text"
