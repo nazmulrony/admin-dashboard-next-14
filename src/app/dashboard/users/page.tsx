@@ -1,5 +1,6 @@
 import Pagination from "@/components/dashboard/pagination/pagination";
 import Search from "@/components/dashboard/search/search";
+import { deleteUser } from "@/lib/actions";
 import { fetchUsers } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
@@ -73,11 +74,16 @@ export default async function UsersPage({
                                             View
                                         </button>
                                     </Link>
-                                    <Link href="/">
+                                    <form action={deleteUser}>
+                                        <input
+                                            type="hidden"
+                                            name="id"
+                                            value={user?._id}
+                                        />
                                         <button className="py-1 rounded px-2 text-white cursor-pointer bg-red-500">
                                             Delete
                                         </button>
-                                    </Link>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
