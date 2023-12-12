@@ -1,5 +1,6 @@
 import Pagination from "@/components/dashboard/pagination/pagination";
 import Search from "@/components/dashboard/search/search";
+import { deleteProduct } from "@/lib/actions";
 import { fetchProducts } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
@@ -70,11 +71,17 @@ export default async function ProductsPage({
                                             View
                                         </button>
                                     </Link>
-                                    <Link href="/">
+
+                                    <form action={deleteProduct}>
+                                        <input
+                                            type="hidden"
+                                            value={product?._id}
+                                            name="id"
+                                        />
                                         <button className="py-1 rounded px-2 text-white cursor-pointer bg-red-500">
                                             Delete
                                         </button>
-                                    </Link>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
