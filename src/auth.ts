@@ -1,10 +1,9 @@
+import bcrypt from "bcrypt";
 import NextAuth from "next-auth";
-import { authConfig } from "./auth.config";
-import credentials from "next-auth/providers/credentials";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { authConfig } from "./auth.config";
 import { connectToDB } from "./lib/utils";
 import User from "./models/user-model";
-import bcrypt from "bcrypt";
 
 //function to fetch the user from DB
 const login = async (credentials: Partial<Record<string, unknown>>) => {
