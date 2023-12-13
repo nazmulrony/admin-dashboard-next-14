@@ -53,8 +53,8 @@ export default async function ProductsPage({ searchParams }: { searchParams: Sea
 							</td>
 							<td className="p-2">{product?.desc}</td>
 							<td className="p-2">${product?.price}</td>
-							<td className="p-2">{product?.createdAt?.toString().slice(4, 6)}</td>
-							<td className="p-2">34</td>
+							<td className="p-2">{product?.createdAt?.toString().slice(4, 16)}</td>
+							<td className="p-2">{product?.stock}</td>
 							<td className="p-2">
 								<div className="flex gap-2">
 									<Link href={`/dashboard/products/${product?._id}`}>

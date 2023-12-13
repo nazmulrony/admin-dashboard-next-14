@@ -1,4 +1,4 @@
-import { updateProduct } from '@/lib/actions';
+import { updateUser } from '@/lib/actions';
 import { fetchUser } from '@/lib/data';
 import Image from 'next/image';
 
@@ -14,7 +14,8 @@ export default async function SingleUserPage({ params }: { params: { id: string 
 				{user?.username}
 			</div>
 			<div className="flex-[3] bg-bgSoft p-5 rounded-lg">
-				<form className="flex flex-col" action={updateProduct}>
+				<form className="flex flex-col" action={updateUser}>
+					<input type="hidden" name="id" value={user?._id} />
 					<label> Username</label>
 					<input
 						className="p-5 border-2 border-gray-600 rounded bg-bgColor my-[10px]"
@@ -37,7 +38,6 @@ export default async function SingleUserPage({ params }: { params: { id: string 
 						type="password"
 						name="password"
 						placeholder="enter password"
-						defaultValue={user?.password}
 					/>
 					<label> Phone</label>
 					<input

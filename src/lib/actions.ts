@@ -107,7 +107,7 @@ export const updateProduct = async (formData: FormData) => {
 		Object.keys(updateFields).forEach((key) => {
 			(updateFields[key] === '' || undefined) && delete updateFields[key];
 		});
-		console.log(id);
+
 		await Product.findByIdAndUpdate(id, updateFields);
 	} catch (error) {
 		console.log(error);
@@ -116,4 +116,39 @@ export const updateProduct = async (formData: FormData) => {
 
 	revalidatePath('/dashboard/products');
 	redirect('/dashboard/products');
+};
+export const updateUser = async (formData: FormData) => {
+	const { id, username, email, password, phone, address, isAdmin, isActive } =
+		Object.fromEntries(formData);
+
+	try {
+		connectToDB();
+
+		const updateFields: UpdateFields = {
+			username,
+			email,
+			password,
+			phone,
+			address,
+			isAdmin,
+			isActive,
+		};
+
+		Object.keys(updateFields).forEach((key) => {
+			(updateFields[key] === '' || undefined) && delete updateFields[key];
+		});
+
+		if (updateFields.password) {
+			const hashedPassword = await bcrypt.hash(updateFields.password as string, 10);
+			updateFields.password = hashedPassword;
+		}
+
+		await User.findByIdAndUpdate(id, updateFields);
+	} catch (error) {
+		console.log(error);
+		throw new Error('Failed to update user.');
+	}
+
+	revalidatePath('/dashboard/users');
+	redirect('/dashboard/users');
 };
