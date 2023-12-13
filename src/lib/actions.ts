@@ -20,8 +20,8 @@ export const addUser = async (formData: FormData) => {
 			password: hashedPassword,
 			phone,
 			address,
-			isAdmin,
-			isActive,
+			isAdmin: isAdmin === 'true' ? true : false,
+			isActive: isActive === 'true' ? true : false,
 		});
 
 		await newUser.save();
@@ -93,7 +93,7 @@ export const deleteProduct = async (formData: FormData) => {
 };
 
 type UpdateFields = {
-	[key: string]: FormDataEntryValue | undefined;
+	[key: string]: FormDataEntryValue | boolean | undefined;
 };
 
 export const updateProduct = async (formData: FormData) => {
@@ -133,15 +133,20 @@ export const updateUser = async (formData: FormData) => {
 			isAdmin,
 			isActive,
 		};
+		console.log(updateFields);
 
 		Object.keys(updateFields).forEach((key) => {
 			(updateFields[key] === '' || undefined) && delete updateFields[key];
 		});
 
+		updateFields.isAdmin = updateFields.isAdmin === 'true' ? true : false;
+		updateFields.isActive = updateFields.isActive === 'true' ? true : false;
+
 		if (updateFields.password) {
 			const hashedPassword = await bcrypt.hash(updateFields.password as string, 10);
 			updateFields.password = hashedPassword;
 		}
+		console.log(updateFields);
 
 		await User.findByIdAndUpdate(id, updateFields);
 	} catch (error) {

@@ -61,10 +61,10 @@ export default async function SingleUserPage({ params }: { params: { id: string 
 						name="isAdmin"
 						id="isAdmin"
 					>
-						<option selected={user?.isAdmin === 'true'} value="true">
+						<option selected={user?.isAdmin} value="true">
 							Yes
 						</option>
-						<option selected={user?.isAdmin === 'false'} value="false">
+						<option selected={!user?.isAdmin} value="false">
 							No
 						</option>
 					</select>
@@ -74,10 +74,10 @@ export default async function SingleUserPage({ params }: { params: { id: string 
 						name="isActive"
 						id="isActive"
 					>
-						<option selected={user?.isActive === 'true'} value="true">
+						<option selected={user?.isActive} value="true">
 							Yes
 						</option>
-						<option selected={user?.isActive === 'false'} value="false">
+						<option selected={!user?.isActive} value="false">
 							No
 						</option>
 					</select>

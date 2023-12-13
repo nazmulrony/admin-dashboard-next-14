@@ -53,10 +53,8 @@ export default async function UsersPage({ searchParams }: { searchParams: Search
 							</td>
 							<td className="p-2">{user?.email}</td>
 							<td className="p-2">{user?.createdAt?.toString().slice(4, 16)}</td>
-							<td className="p-2">{user?.isAdmin === 'true' ? 'Admin' : 'Client'}</td>
-							<td className="p-2">
-								{user?.isActive === 'true' ? 'active' : 'inactive'}
-							</td>
+							<td className="p-2">{user?.isAdmin ? 'Admin' : 'Client'}</td>
+							<td className="p-2">{user?.isActive ? 'active' : 'inactive'}</td>
 							<td className="p-2">
 								<div className="flex gap-2">
 									<Link href={`/dashboard/users/${user?._id}`}>
