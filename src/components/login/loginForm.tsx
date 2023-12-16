@@ -1,8 +1,14 @@
+"use client";
+
+import { authenticate } from "@/lib/actions";
+import { useFormState } from "react-dom";
+
 export default function LoginForm() {
+    const [state, formAction] = useFormState(authenticate, undefined);
     return (
         <div>
             <form
-                action=""
+                action={formAction}
                 className="bg-bgSoft p-12 rounded-lg w-[500px] h-[500px] flex flex-col gap-7 justify-center items-center"
             >
                 <h2 className="text-2xl font-bold">Login</h2>
@@ -24,6 +30,7 @@ export default function LoginForm() {
                 >
                     Login
                 </button>
+                <p className="text-red-500"> {state && state}</p>
             </form>
         </div>
     );
