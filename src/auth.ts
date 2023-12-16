@@ -19,7 +19,7 @@ const login = async (credentials: Partial<Record<string, unknown>>) => {
         );
 
         if (!isPasswordCorrect) {
-            throw new Error("Wrong credentials in password");
+            throw new Error("Wrong credentials");
         }
 
         return user;

@@ -174,7 +174,6 @@ export const updateUser = async (formData: FormData) => {
 
 export const authenticate = async (formData: FormData) => {
     const { username, password } = Object.fromEntries(formData);
-    console.log({ username, password });
 
     try {
         await signIn("credentials", { username, password });
