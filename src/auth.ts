@@ -19,7 +19,7 @@ const login = async (credentials: Partial<Record<string, unknown>>) => {
         );
 
         if (!isPasswordCorrect) {
-            throw new Error("Wrong credentials");
+            throw new Error("Wrong credentials in password");
         }
 
         return user;
@@ -43,4 +43,20 @@ export const { auth, signIn, signOut } = NextAuth({
             },
         }),
     ],
+    callbacks: {
+        async jwt({ token, user }: any) {
+            if (user) {
+                token.username = user.username;
+                token.img = user.img;
+            }
+            return token;
+        },
+        async session({ session, token }: any) {
+            if (token) {
+                session.user.name = token.username;
+                session.user.image = token.img;
+            }
+            return session;
+        },
+    },
 });
