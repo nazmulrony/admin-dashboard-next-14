@@ -6,7 +6,6 @@ import { auth, signOut } from "@/auth";
 
 export default async function Sidebar() {
     const session = await auth();
-    console.log(session);
     return (
         <div className="sticky top-10">
             <div className="flex items-center gap-5 mb-5">
